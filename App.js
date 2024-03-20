@@ -9,7 +9,7 @@ export default function App() {
     </View>
   );
 }
-
+// hola
 const styles = StyleSheet.create({
   container: {
     flex: 1,
