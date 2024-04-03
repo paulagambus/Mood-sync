@@ -1,50 +1,74 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, Alert, TouchableHighlight, SafeAreaView, Image, Button } from 'react-native';
+import { StyleSheet, Text, View, Alert, TouchableHighlight, SafeAreaView, Image, Button, TouchableOpacity } from 'react-native';
 
 export default function App() {
-  const handlePress = () => console.log("Text clicked");
+  const signupPressed = () => {
+    Alert.alert('Signup button pressed');
+  }
+
+  const loginPressed = () => {
+    Alert.alert('Login button pressed');
+  }
   return (
     // the second style is to override the first style
-    <SafeAreaView style={[styles.container, containerStyle]}>
-      <Button 
-        color={"black"}
-        title='Click Me' 
-        onPress={() => 
-          // Creating an alert box with a title, message and buttons
-        //   Alert.alert("My Title", "My message", [
-        //   {text: "Yes", onPress: () => console.log("Yes")},
-        //   {text: "No", onPress: () => console.log("No")},
-        // ])
-        // Create a pop up with input field
-        Alert.prompt("My Title", "My message", (text) => console.log(text))
-      }
-      />
+    <SafeAreaView style={[styles.container1]}>
+      <Image
+        source={require('./assets/logo.png')}
+        style={styles.logo}
+        resizeMode='contain'
+        />
+      <TouchableHighlight>
+        <Text style={styles.signup} onPress={signupPressed}>Sign up</Text>
+      </TouchableHighlight>
+      <TouchableHighlight>
+        <Text style={styles.login} onPress={loginPressed}>Login</Text>
+      </TouchableHighlight>
     </SafeAreaView>
   );
 }
 
-{/* <Text numberOfLines={1} onPress={handlePress}>
-Hello girls!
-</Text>
-<TouchableHighlight onPress={() => console.log("Image tapped")}>
-<Image
-  source={{ 
-    width: 200,
-    height: 300,
-    uri: "https://picsum.photos/200/300",
-  }} 
-/>
-</TouchableHighlight>
-<View style={{width: 100, height: 50, backgroundColor:"dodgerblue"}}></View>
-<StatusBar style="auto" /> */}
-
-const containerStyle = {backgroundColor: "orange"};
-
 const styles = StyleSheet.create({
-  container: {
+  container1: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: '#9370DB',
+    // alignItems: 'center',
+    // justifyContent: 'center',
   },
+
+  logo: {
+    width: '50%',
+    height: '50%',
+    position: 'absolute',
+    marginTop: '20%',
+    marginLeft: '25%',
+    // top: 60, // Adjust this value to position the logo vertically
+    // alignSelf: 'center', // Align the logo horizontally to the center
+  },
+
+  signup: {
+    backgroundColor: 'purple',
+    color: 'white',
+    width: "75%",
+    borderRadius: 25,
+    textAlign: 'center',
+    // fontWeight: 'bold',
+    marginLeft: '11%',
+    padding: "2%",
+    fontSize:  27,
+    marginTop: '90%'
+  },
+
+  login: {
+    backgroundColor: 'purple',
+      color: 'white',
+      width: "65%",
+      borderRadius: 25,
+      textAlign: 'center',
+      // fontWeight: 'bold',
+      marginLeft: '18%',
+      // fontFamily: 'serif',
+      padding: "2%",
+      fontSize:  33,
+      marginTop: '5%'
+  }
 });
