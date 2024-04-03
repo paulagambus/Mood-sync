@@ -15,6 +15,7 @@ Alert.prompt("My Title", "My message", (text) => console.log(text))
 <Text numberOfLines={1} onPress={handlePress}>
 Hello girls!
 </Text>
+
 <TouchableHighlight onPress={() => console.log("Image tapped")}>
 <Image
   source={{ 
@@ -26,3 +27,4 @@ Hello girls!
 </TouchableHighlight>
 <View style={{width: 100, height: 50, backgroundColor:"dodgerblue"}}></View>
 <StatusBar style="auto" />
+

@@ -2,9 +2,6 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Alert, TouchableHighlight, SafeAreaView, Image, Button, TouchableOpacity } from 'react-native';
 
 export default function App() {
-  const signupPressed = () => {
-    Alert.alert('Signup button pressed');
-  }
 
   const loginPressed = () => {
     Alert.alert('Login button pressed');
@@ -17,12 +14,14 @@ export default function App() {
         style={styles.logo}
         resizeMode='contain'
         />
-      <TouchableHighlight>
-        <Text style={styles.signup} onPress={signupPressed}>Sign up</Text>
-      </TouchableHighlight>
-      <TouchableHighlight>
-        <Text style={styles.login} onPress={loginPressed}>Login</Text>
-      </TouchableHighlight>
+      <TouchableOpacity
+        onPress={loginPressed}
+        style={styles.button}
+      >
+        <View style={styles.buttonInner}>
+          <Text style={styles.buttonText}>Login</Text>
+        </View>
+      </TouchableOpacity>
     </SafeAreaView>
   );
 }
@@ -41,34 +40,32 @@ const styles = StyleSheet.create({
     position: 'absolute',
     marginTop: '20%',
     marginLeft: '25%',
+    marginRight: '25%'
     // top: 60, // Adjust this value to position the logo vertically
     // alignSelf: 'center', // Align the logo horizontally to the center
   },
 
-  signup: {
-    backgroundColor: 'purple',
-    color: 'white',
-    width: "75%",
+  button: {
+    width: "50%",
     borderRadius: 25,
-    textAlign: 'center',
-    // fontWeight: 'bold',
-    marginLeft: '11%',
-    padding: "2%",
-    fontSize:  27,
-    marginTop: '90%'
+    marginVertical: 320,
+    alignItems: 'center',
+    marginLeft: '24%',
+    paddingHorizontal: 10,
+  },
+  
+  buttonInner: {
+    backgroundColor: 'purple',
+    paddingVertical: 15,
+    borderRadius: 25,
+    width: '100%',
+    alignItems: 'center',
   },
 
-  login: {
-    backgroundColor: 'purple',
-      color: 'white',
-      width: "65%",
-      borderRadius: 25,
-      textAlign: 'center',
-      // fontWeight: 'bold',
-      marginLeft: '18%',
-      // fontFamily: 'serif',
-      padding: "2%",
-      fontSize:  33,
-      marginTop: '5%'
-  }
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    alignItems: 'center',
+    fontSize: 16,
+  },
 });
