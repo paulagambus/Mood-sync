@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, Alert, TouchableHighlight, SafeAreaView, Image, Button, TouchableOpacity } from 'react-native';
 
 // Handler of the add button
-// const pressHandler = () => {
-//   navigation.navigate('HomePage');
-// }
+const pressHandler = () => {
+  navigation.navigate('Home');
+}
 
-export default function HomePage({navigation}) {
+export default function LoginPage({navigation}) {
 
     const loginPressed = () => {
       Alert.alert('Login button pressed');
@@ -18,6 +18,14 @@ export default function HomePage({navigation}) {
           style={styles.logo}
           resizeMode='contain'
           />
+        <TouchableOpacity
+          onPress={pressHandler}
+          style={styles.button}
+        >
+          <View style={styles.buttonInner}>
+            <Text style={styles.buttonText}>Login</Text>
+          </View>
+        </TouchableOpacity>
       </SafeAreaView>
     );
   }
