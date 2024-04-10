@@ -9,10 +9,6 @@ export default function LoginPage ({navigation}) {
       navigation.navigate('Home');
     }
 
-    // const loginPressed = () => {
-    //   Alert.alert('Login button pressed');
-    // };
-
     return (
       // the second style is to override the first style
       <SafeAreaView style={[styles.container1]}>
