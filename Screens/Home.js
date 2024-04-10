@@ -1,4 +1,5 @@
 import { StyleSheet, Text, View, Alert, TouchableHighlight, SafeAreaView, Image, Button, TouchableOpacity } from 'react-native';
+import { colors } from "./Utils/Colors";
 
 // Handler of the add button
 // const pressHandler = () => {
@@ -25,7 +26,7 @@ export default function HomePage({navigation}) {
   const styles = StyleSheet.create({
     container1: {
       flex: 1,
-      backgroundColor: '#9370DB',
+      backgroundColor: colors.LIGHT_PURPLE,
       // alignItems: 'center',
       // justifyContent: 'center',
     },
@@ -51,7 +52,7 @@ export default function HomePage({navigation}) {
     },
     
     buttonInner: {
-      backgroundColor: 'purple',
+      backgroundColor: colors.DARK_PURPLE,
       paddingVertical: 15,
       borderRadius: 25,
       width: '100%',
@@ -59,7 +60,7 @@ export default function HomePage({navigation}) {
     },
   
     buttonText: {
-      color: 'white',
+      color: colors.WHITE,
       fontWeight: 'bold',
       alignItems: 'center',
       fontSize: 16,

@@ -1,15 +1,18 @@
-import { StyleSheet, Text, View, Alert, TouchableHighlight, SafeAreaView, Image, Button, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Alert, TouchableHighlight, SafeAreaView, Image, Button, TouchableOpacity, Dimensions } from 'react-native';
+import { colors } from "./Utils/Colors";
 
-// Handler of the add button
-const pressHandler = () => {
-  navigation.navigate('Home');
-}
+export default function LoginPage ({navigation}) {
 
-export default function LoginPage({navigation}) {
-
-    const loginPressed = () => {
-      Alert.alert('Login button pressed');
+    // Handler of the add button
+    const pressHandler = () => {
+      console.log('Login button pressed');
+      navigation.navigate('Home');
     }
+
+    // const loginPressed = () => {
+    //   Alert.alert('Login button pressed');
+    // };
+
     return (
       // the second style is to override the first style
       <SafeAreaView style={[styles.container1]}>
@@ -33,7 +36,9 @@ export default function LoginPage({navigation}) {
   const styles = StyleSheet.create({
     container1: {
       flex: 1,
-      backgroundColor: '#9370DB',
+      backgroundColor: colors.LIGHT_PURPLE,
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height,
       // alignItems: 'center',
       // justifyContent: 'center',
     },
@@ -52,14 +57,14 @@ export default function LoginPage({navigation}) {
     button: {
       width: "50%",
       borderRadius: 25,
-      marginVertical: 320,
+      marginTop: '90%',
       alignItems: 'center',
       marginLeft: '24%',
       paddingHorizontal: 10,
     },
     
     buttonInner: {
-      backgroundColor: 'purple',
+      backgroundColor: colors.DARK_PURPLE,
       paddingVertical: 15,
       borderRadius: 25,
       width: '100%',
@@ -67,7 +72,7 @@ export default function LoginPage({navigation}) {
     },
   
     buttonText: {
-      color: 'white',
+      color: colors.WHITE,
       fontWeight: 'bold',
       alignItems: 'center',
       fontSize: 16,
