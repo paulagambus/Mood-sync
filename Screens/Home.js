@@ -1,16 +1,18 @@
 import { StyleSheet, Text, View, Alert, TouchableHighlight, SafeAreaView, Image, Button, TouchableOpacity } from 'react-native';
 import { colors } from "./Utils/Colors";
 
-// Handler of the add button
-// const pressHandler = () => {
-//   navigation.navigate('HomePage');
-// }
 
 export default function HomePage({navigation}) {
+
+    // Handler of the add button
+    const pressHandler = () => {
+      navigation.navigate('HomePage');
+    }
 
     const loginPressed = () => {
       Alert.alert('Login button pressed');
     }
+    
     return (
       // the second style is to override the first style
       <SafeAreaView style={[styles.container1]}>
