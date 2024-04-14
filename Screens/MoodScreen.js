@@ -27,7 +27,9 @@ export default function MoodScreen ({navigation}) {
   // Handler of the add button
   const pressHandler = () => {
     console.log('Save button pressed');
-    // Add your save functionality here
+    Alert.alert('Mood saved', 'Your mood has been saved successfully.', [
+      { text: 'Ok', onPress: () => navigation.navigate('Home') }
+    ]);
   }
 
   return (
