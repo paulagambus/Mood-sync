@@ -4,29 +4,60 @@ import { colors } from "./Utils/Colors";
 export default function MoodScreen ({navigation}) {
 
     // Handler of the add button
-    const pressHandler = () => {
-      console.log('Login button pressed');
-      navigation.navigate('Home');
-    }
+  const pressHandler = () => {
+    console.log('Save button pressed');
+    // Add your save functionality here
+  }
 
-    return (
-      // the second style is to override the first style
-      <SafeAreaView style={[styles.container1]}>
-        <Image
-          source={require('../assets/logo.png')}
-          style={styles.logo}
-          resizeMode='contain'
-          />
-        <TouchableOpacity
+  return (
+    <SafeAreaView style={styles.container1}>
+      <View style={styles.header}>
+        <Text style={styles.headerText}>How did you feel today?</Text>
+      </View>
+      <View style={styles.imageContainer}>
+        <View style={styles.row}>
+          <TouchableOpacity onPress={() => console.log('Image 1 pressed')}>
+            <Image source={require('../assets/moods/anxious_face.png')} style={styles.image} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => console.log('Image 2 pressed')}>
+            <Image source={require('../assets/moods/confused_face.png')} style={styles.image} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.row}>
+          <TouchableOpacity onPress={() => console.log('Image 3 pressed')}>
+            <Image source={require('../assets/moods/grinning_face.png')} style={styles.image} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => console.log('Image 4 pressed')}>
+            <Image source={require('../assets/moods/neutral_face.png')} style={styles.image} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.row}>
+          <TouchableOpacity onPress={() => console.log('Image 5 pressed')}>
+            <Image source={require('../assets/moods/pouting_face.png')} style={styles.image} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => console.log('Image 6 pressed')}>
+            <Image source={require('../assets/moods/smiling_face.png')} style={styles.image} />
+          </TouchableOpacity>
+        </View>
+        <View style={styles.row}>
+          <TouchableOpacity onPress={() => console.log('Image 7 pressed')}>
+            <Image source={require('../assets/moods/star_struck.png')} style={styles.image} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => console.log('Image 8 pressed')}>
+            <Image source={require('../assets/moods/woozy_face.png')} style={styles.image} />
+          </TouchableOpacity>
+        </View>
+      </View>
+      <TouchableOpacity
           onPress={pressHandler}
           style={styles.button}
         >
           <View style={styles.buttonInner}>
-            <Text style={styles.buttonText}>Login</Text>
+            <Text style={styles.buttonText}>Save</Text>
           </View>
-        </TouchableOpacity>
-      </SafeAreaView>
-    );
+      </TouchableOpacity>
+    </SafeAreaView>
+  );
   }
 
   const styles = StyleSheet.create({
@@ -51,7 +82,7 @@ export default function MoodScreen ({navigation}) {
     button: {
       width: "50%",
       borderRadius: 25,
-      marginVertical: 320,
+      marginVertical: 25,
       alignItems: 'center',
       marginLeft: '24%',
       paddingHorizontal: 10,
@@ -70,5 +101,33 @@ export default function MoodScreen ({navigation}) {
       fontWeight: 'bold',
       alignItems: 'center',
       fontSize: 16,
+    },
+
+    header: {
+      marginTop: 40,
+      marginBottom: 35,
+      alignItems: 'center',
+    },
+
+    headerText: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      color: colors.WHITE,
+    },
+
+    imageContainer: {
+      alignItems: 'center',
+    },
+
+    row: {
+      flexDirection: 'row',
+      marginBottom: 10,
+    },
+
+    image: {
+      width: 100,
+      height: 100,
+      marginHorizontal: 30,
+      marginVertical: 5,
     },
   });
