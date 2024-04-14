@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View, Alert, TouchableHighlight, SafeAreaView, Image, Button, TouchableOpacity } from 'react-native';
 import { colors } from "./Utils/Colors";
 import React, { useState } from 'react';
+import { Ionicons } from '@expo/vector-icons';
+import ProfileModal from './Profile'; // Correct import path
 
 export default function MoodScreen ({navigation}) {
   // Manage pressed state for each image separately
@@ -14,6 +16,12 @@ export default function MoodScreen ({navigation}) {
     "star struck face": false,
     "woozy face": false,
   });
+
+  const [isProfileModalVisible, setIsProfileModalVisible] = useState(false);
+
+  const toggleProfileModal = () => {
+    setIsProfileModalVisible(!isProfileModalVisible);
+  };
 
   const handlePressImage = (imageName) => {
     // Toggle pressed state for the clicked image
@@ -30,6 +38,11 @@ export default function MoodScreen ({navigation}) {
     Alert.alert('Mood saved', 'Your mood has been saved successfully.', [
       { text: 'Ok', onPress: () => navigation.navigate('Home') }
     ]);
+  }
+
+  const pressHandlerProfile = () => {
+    console.log('Profile button pressed');
+    // navigation.navigate('Profile');
   }
 
   return (
@@ -87,6 +100,12 @@ export default function MoodScreen ({navigation}) {
             <Text style={styles.buttonText}>Save</Text>
           </View>
       </TouchableOpacity>
+      <TouchableOpacity style={styles.profileButton} onPress={toggleProfileModal}>
+        <View >
+          <Ionicons name="person-circle-outline" size={60} color={colors.DARK_PURPLE} />
+        </View>
+      </TouchableOpacity>
+      <ProfileModal isVisible={isProfileModalVisible} onClose={toggleProfileModal} />
     </SafeAreaView>
   );
 }
@@ -170,4 +189,11 @@ const styles = StyleSheet.create({
     marginVertical: 5,
     opacity: 1,
   },
+
+  profileButton: {
+    borderRadius: 20, // Make the button circular
+    padding: 10, // Add padding for the icon to have some space from the button edge
+    marginBottom: 10, // Add margin to the bottom of the button
+  },
+
 });
