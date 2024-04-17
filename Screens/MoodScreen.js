@@ -47,6 +47,12 @@ export default function MoodScreen ({navigation}) {
 
   return (
     <SafeAreaView style={styles.container1}>
+      <TouchableOpacity style={styles.profileButton} onPress={toggleProfileModal}>
+        <View >
+          <Ionicons name="person-circle-outline" size={50} color={colors.DARK_PURPLE} />
+        </View>
+      </TouchableOpacity>
+      <ProfileModal isVisible={isProfileModalVisible} onClose={toggleProfileModal} />
       <View style={styles.header}>
         <Text style={styles.headerText}>How did you feel today?</Text>
       </View>
@@ -100,12 +106,6 @@ export default function MoodScreen ({navigation}) {
             <Text style={styles.buttonText}>Save</Text>
           </View>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.profileButton} onPress={toggleProfileModal}>
-        <View >
-          <Ionicons name="person-circle-outline" size={60} color={colors.DARK_PURPLE} />
-        </View>
-      </TouchableOpacity>
-      <ProfileModal isVisible={isProfileModalVisible} onClose={toggleProfileModal} />
     </SafeAreaView>
   );
 }
@@ -154,7 +154,7 @@ const styles = StyleSheet.create({
   },
 
   header: {
-    marginTop: 40,
+    marginTop: 70,
     marginBottom: 35,
     alignItems: 'center',
   },
@@ -162,7 +162,7 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 20,
     fontWeight: 'bold',
-    color: colors.WHITE,
+    color: colors.DARK_PURPLE,
   },
 
   imageContainer: {
@@ -191,9 +191,10 @@ const styles = StyleSheet.create({
   },
 
   profileButton: {
+    position: 'absolute', // Position the button absolutely
+    right: 5, // Adjust the right margin as needed
     borderRadius: 20, // Make the button circular
     padding: 10, // Add padding for the icon to have some space from the button edge
-    marginBottom: 10, // Add margin to the bottom of the button
-  },
+ },
 
 });
