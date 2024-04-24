@@ -36,3 +36,7 @@ yarn-error.*
 
 # data
 assets/phone_usage.csv
+assets/phone_usage.json
+Screens/Utils/csv_to_json.py
+assets/month_data.json
+assets/week_data.json
