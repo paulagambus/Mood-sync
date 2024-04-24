@@ -18,13 +18,18 @@ export default function HomePage({navigation}) {
   
   return (
       <View style={styles.container}>
-          <Text style={styles.greetingText}>How do you feel today?</Text>
+          <Image
+                source={require('../assets/logo.png')}
+                style={styles.logo}
+                resizeMode='contain'
+          />
+          <Text style={styles.feelText}>How do you feel today?</Text>
           <TouchableOpacity onPress={doItHandler} style={styles.button}>
               <View style={styles.buttonInner}>
                   <Text style={styles.buttonText}>Let's do it</Text>
               </View>
           </TouchableOpacity>
-          <Text style={styles.greetingText}>How was the week?</Text>
+          <Text style={styles.weekText}>How was the week?</Text>
           <TouchableOpacity onPress={checkItHandler} style={styles.button}>
               <View style={styles.buttonInner}>
                   <Text style={styles.buttonText}>Let's check it</Text>
@@ -43,22 +48,35 @@ const styles = StyleSheet.create({
       width: Dimensions.get('window').width,
       height: Dimensions.get('window').height,
   },
-  greetingText: {
+  logo: {
+    width: 100, // Adjust width as needed
+    height: 100, // Adjust height as needed
+    position: 'absolute',
+    top: 20, // Adjust top position as needed
+    left: 20, // Adjust left position as needed
+  },
+  feelText: {
       marginBottom: 20,
-      color: colors.WHITE,
+      color: colors.DARK_PURPLE,
+      fontSize: 20,
+      fontWeight: 'bold',
+  },
+  weekText: {
+      marginBottom: 20,
+      color: colors.DARK_PURPLE,
       fontSize: 20,
       fontWeight: 'bold',
   },
   button: {
       width: "50%",
       borderRadius: 25,
-      marginBottom: 20,
+      marginBottom: 30,
       alignItems: 'center',
       backgroundColor: colors.DARK_PURPLE,
-      paddingHorizontal: 10,
+      paddingHorizontal: 50,
   },
   buttonInner: {
-      paddingVertical: 15,
+      paddingVertical: 20,
       borderRadius: 25,
       marginTop: '-10%',
       width: '100%',
@@ -67,6 +85,8 @@ const styles = StyleSheet.create({
   buttonText: {
       color: colors.WHITE,
       fontWeight: 'bold',
+      marginTop: 5,
       fontSize: 16,
+      alignItems: 'center',
   },
 });
