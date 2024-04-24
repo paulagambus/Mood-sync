@@ -6,7 +6,7 @@ export default function LoginPage ({navigation}) {
     // Handler of the add button
     const pressHandler = () => {
       console.log('Login button pressed');
-      navigation.navigate('Home');
+      navigation.navigate('Mood'); // in the future, this will navigate to the home page
     }
 
     return (

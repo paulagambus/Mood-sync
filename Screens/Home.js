@@ -4,92 +4,69 @@ import { colors } from "./Utils/Colors";
 
 export default function HomePage({navigation}) {
 
-    // Handler of the add button
-    const pressHandler = () => {
-      console.log('button 1 pressed');
-      navigation.navigate('HomePage');
-    }
+  // Handler for the "Let's do it" button
+  const doItHandler = () => {
+      console.log('Let\'s do it button pressed');
+      // Add your navigation logic here for the "Let's do it" button
+  }
 
-    //const loginPressed = () => {
-      //Alert.alert('Login button pressed');
-    //}
-    
-    return (
-      <View>
-        <SafeAreaView>
-          <TouchableOpacity onPress={pressHandler}>
-            <View>
-              <Text>Let's go!</Text>
-            </View>
-          </TouchableOpacity>
-        </SafeAreaView>
-      </View>
-    );
-    
+  // Handler for the "Let's check it" button
+  const checkItHandler = () => {
+      console.log('Let\'s check it button pressed');
+      // Add your navigation logic here for the "Let's check it" button
   }
   
-  const styles = StyleSheet.create({
-    container1: {
-      flex: 1,
-      backgroundColor: colors.LIGHT_PURPLE,
-      // alignItems: 'center',
-      // justifyContent: 'center',
-    },
-  
-    logo: {
-      width: '50%',
-      height: '50%',
-      position: 'absolute',
-      //marginTop: '1%',
-      marginLeft: '25%',
-      marginRight: '25%'
-      // top: 60, // Adjust this value to position the logo vertically
-      // alignSelf: 'center', // Align the logo horizontally to the center
-    },
-  
-    button: {
-      width: "50%",
-      borderRadius: 25,
-      marginTop: '90%',
-      alignItems: 'center',
-      marginLeft: '24%',
-      paddingHorizontal: 10,
-    },
-    
-    button2: {
-      width: "50%",
-      borderRadius: 25,
-      marginTop: '10%',
-      alignItems: 'center',
-      marginLeft: '24%',
-      paddingHorizontal: 10,
-    },
+  return (
+      <View style={styles.container}>
+          <Text style={styles.greetingText}>How do you feel today?</Text>
+          <TouchableOpacity onPress={doItHandler} style={styles.button}>
+              <View style={styles.buttonInner}>
+                  <Text style={styles.buttonText}>Let's do it</Text>
+              </View>
+          </TouchableOpacity>
+          <Text style={styles.greetingText}>How was the week?</Text>
+          <TouchableOpacity onPress={checkItHandler} style={styles.button}>
+              <View style={styles.buttonInner}>
+                  <Text style={styles.buttonText}>Let's check it</Text>
+              </View>
+          </TouchableOpacity>
+      </View>
+  );
+}
 
-    buttonInner: {
+const styles = StyleSheet.create({
+  container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: colors.LIGHT_PURPLE,
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height,
+  },
+  greetingText: {
+      marginBottom: 20,
+      color: colors.WHITE,
+      fontSize: 20,
+      fontWeight: 'bold',
+  },
+  button: {
+      width: "50%",
+      borderRadius: 25,
+      marginBottom: 20,
+      alignItems: 'center',
       backgroundColor: colors.DARK_PURPLE,
+      paddingHorizontal: 10,
+  },
+  buttonInner: {
       paddingVertical: 15,
       borderRadius: 25,
       marginTop: '-10%',
       width: '100%',
       alignItems: 'center',
-    },
-  
-    buttonInner2: {
-      backgroundColor: colors.DARK_PURPLE,
-      paddingVertical: 15,
-      borderRadius: 25,
-      marginTop: '100%',
-      width: '100%',
-      alignItems: 'center',
-    },
-
-    buttonText: {
+  },
+  buttonText: {
       color: colors.WHITE,
       fontWeight: 'bold',
-      alignItems: 'center',
       fontSize: 16,
-    },
-
-  
-  });
-  
+  },
+});
