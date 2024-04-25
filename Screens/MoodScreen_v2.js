@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { View, StyleSheet, TouchableOpacity, FlatList, Image, Dimensions, Button, Alert , Text } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const WheelSelector = () => {
   const imageSources = [
@@ -45,14 +46,20 @@ const WheelSelector = () => {
     setSelectedSquare(selectedIndex);
   };
 
+  const navigation = useNavigation();
+
   const handleSaveButtonPress = () => {
     // Save the mood here
     const selectedEmojiIndex = selectedSquare;
     const selectedEmojiPath = imageSources[selectedSquare];
     console.log('Chosen emoji index:', selectedEmojiIndex);
     console.log('Chosen emoji path:', selectedEmojiPath);
-    Alert.alert('Mood Saved', 'Your mood has been saved!');
-
+    Alert.alert('Mood Saved', 'Your mood has been saved!', [
+      {
+        text: 'OK',
+        onPress: () => navigation.navigate('Visualizations'), // Navigate to VisualizationScreen
+      },
+    ]);
   };
 
   return (
