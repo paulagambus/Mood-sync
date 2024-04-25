@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginPage from './Screens/LoginPage'; 
 import HomePage from './Screens/Home';
-import MoodScreen from './Screens/MoodScreen';
+import MoodScreen from './Screens/MoodScreen_v2';
 
 const Stack = createNativeStackNavigator();
 
