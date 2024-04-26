@@ -50,7 +50,7 @@ export default function HomePage({navigation}) {
                     <Text style={styles.buttonText}>Let's do it</Text>
                 </View>
             </TouchableOpacity>
-            <Text style={styles.greetingText}>How was the week?</Text>
+            <Text style={styles.greetingText}>See your past performance</Text>
             <TouchableOpacity onPress={checkItHandler} style={styles.button}>
                 <View style={styles.buttonInner}>
                     <Text style={styles.buttonText}>Let's check it</Text>
