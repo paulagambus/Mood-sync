@@ -28,3 +28,12 @@ Hello girls!
 <View style={{width: 100, height: 50, backgroundColor:"dodgerblue"}}></View>
 <StatusBar style="auto" />
 
+const imageSources = [
+    require('../assets/moods/anxious_face.png'),
+    require('../assets/moods/confused_face.png'),
+    require('../assets/moods/grinning_face.png'),
+    require('../assets/moods/neutral_face.png'),
+    require('../assets/moods/pouting_face.png'),
+    require('../assets/moods/smiling_face.png'),
+    require('../assets/moods/woozy_face.png'),
+  ];
