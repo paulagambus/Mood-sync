@@ -1,54 +1,40 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
-import { Calendar } from 'react-native-calendars'; // or any other calendar library you're using
+import { View, Image, ScrollView, StyleSheet } from 'react-native';
+import { colors } from "./Utils/Colors";
 
 const MonthScreen = () => {
-  const markedDatesWithEmojis = { /* your marked dates with emojis */ };
-  const markedDatesWithPlus = { /* your marked dates with plus symbols */ };
-
-  const renderCustomDay = (date) => {
-    const emoji = markedDatesWithEmojis[date.dateString];
-    const plus = markedDatesWithPlus[date.dateString];
-    return (
-      <View style={styles.customDayContainer}>
-        <Text style={styles.dayText}>{date.day}</Text>
-        <Text style={styles.emoji}>{emoji}</Text>
-        <Text style={styles.plus}>{plus}</Text>
-      </View>
-    );
-  };
-
   return (
-    <View style={styles.container}>
-      {/* Your calendar component */}
-      <Calendar
-        renderDay={renderCustomDay}
-        /* other props */
-      />
-    </View>
+    <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.imageContainer}>
+        <Image source={require('../assets/month/month_view.png')} style={styles.image1} />
+      </View>
+      <View style={styles.imageContainer}>
+      <Image source={require('../assets/month/under_month.png')} style={styles.image2} />
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
+    flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  customDayContainer: {
-    alignItems: 'center',
+  imageContainer: {
+    marginVertical: 20, // Adjust as needed
   },
-  dayText: {
-    fontSize: 16,
-    fontWeight: 'bold',
+  image1: {
+    width: 350, // Adjust width as needed
+    height: 470, // Adjust height as needed
+    resizeMode: 'contain', // Adjust the resizeMode property as needed
+    // Add any additional styles for the first image here
   },
-  emoji: {
-    fontSize: 16,
-    marginTop: 4, // Adjust this value to position the emoji below the day number
-  },
-  plus: {
-    fontSize: 16,
-    marginTop: 4, // Adjust this value to position the plus symbol below the day number
+  image2: {
+    width: 550, // Adjust width as needed
+    height: 350, // Adjust height as needed
+    resizeMode: 'contain', // Adjust the resizeMode property as needed
+    // Add any additional styles for the second image here
   },
 });
 

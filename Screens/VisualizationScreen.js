@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
+import { colors } from "./Utils/Colors";
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import WeekScreen from './WeekScreen';
 import MonthScreen from './MonthScreen';
@@ -19,9 +20,9 @@ const VisualizationScreen = () => {
   const renderTabBar = props => (
     <TabBar
       {...props}
-      indicatorStyle={{ backgroundColor: 'blue' }}
-      style={{ backgroundColor: 'white' }}
-      labelStyle={{ color: 'black' }}
+      indicatorStyle={{ backgroundColor: colors.DARK_PURPLE }}
+      style={{ backgroundColor: "while" }}
+      labelStyle={{ color: colors.DARK_PURPLE }}
     />
   );
 

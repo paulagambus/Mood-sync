@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { colors } from "./Utils/Colors";
 import { View, StyleSheet, TouchableOpacity, FlatList, Image, Dimensions, Button, Alert , Text } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
@@ -80,7 +81,7 @@ const WheelSelector = () => {
         />
       
       <View style={styles.buttonContainer}>
-        <Button title="Save" onPress={handleSaveButtonPress} />
+        <Button title="Save" onPress={handleSaveButtonPress} color={colors.DARK_PURPLE}/>
       </View>
     </View>
   );
@@ -92,10 +93,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center', // Center vertically
     alignItems: 'center', // Center horizontally
     paddingTop: 20, // Add padding at the top to prevent squeezing
+    backgroundColor: colors.LIGHT_PURPLE, // Change the background color
   },
   heading: {
     fontSize: 24, // Increase font size
     marginTop: 20, // Add more margin at the bottom
+    color: colors.DARK_PURPLE, // Change the color
   },
   flatListContainer: {
     flex: 1,
@@ -120,6 +123,7 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginVertical: 60, // Add margin to the top and bottom
+    color: colors.LIGHT_PURPLE, // Change the color
   },
 });
 
