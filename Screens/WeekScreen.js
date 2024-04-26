@@ -7,7 +7,7 @@ const WeekScreen = () => {
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.imageContainer}>
         
-        <Image source={require('../assets/week/weekly_one.png')} style={styles.image1} />
+        <Image source={require('../assets/week/week_two.png')} style={styles.image1} />
       </View>
       <View style={styles.imageContainer}>
         
