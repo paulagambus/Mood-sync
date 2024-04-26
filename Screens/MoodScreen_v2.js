@@ -58,7 +58,7 @@ const WheelSelector = () => {
     Alert.alert('Mood Saved', 'Your mood has been saved!', [
       {
         text: 'OK',
-        onPress: () => navigation.navigate('Visualizations'), // Navigate to VisualizationScreen
+        onPress: () => navigation.navigate('Home'), // Navigate to VisualizationScreen
       },
     ]);
   };

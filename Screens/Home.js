@@ -1,20 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity, Image, Dimensions } from 'react-native';
 import { colors } from "./Utils/Colors";
 import { Ionicons } from '@expo/vector-icons'; // Import Ionicons
 
+import ProfileModal from './Profile'; // Import the ProfileModal component
+
 export default function HomePage({navigation}) {
+
+    const [isProfileModalVisible, setIsProfileModalVisible] = useState(false);
+
+    const toggleProfileModal = () => {
+        setIsProfileModalVisible(!isProfileModalVisible);
+    };
 
     // Handler for the "Let's do it" button
     const doItHandler = () => {
         console.log('Let\'s do it button pressed');
-        // Add your navigation logic here for the "Let's do it" button
+        navigation.navigate('Mood');
     }
 
     // Handler for the "Let's check it" button
     const checkItHandler = () => {
         console.log('Let\'s check it button pressed');
-        // Add your navigation logic here for the "Let's check it" button
+        navigation.navigate('Visualizations');
     }
     
     // Handler for the profile button
@@ -30,11 +38,12 @@ export default function HomePage({navigation}) {
                 style={styles.logo}
                 resizeMode='contain'
             />
-            <TouchableOpacity style={styles.profileButton} onPress={pressHandlerProfile}>
+            <TouchableOpacity style={styles.profileButton} onPress={toggleProfileModal}>
                 <View >
                     <Ionicons name="person-circle-outline" size={50} color={colors.DARK_PURPLE} />
                 </View>
             </TouchableOpacity>
+            <ProfileModal isVisible={isProfileModalVisible} onClose={toggleProfileModal} />
             <Text style={styles.greetingText}>How do you feel today?</Text>
             <TouchableOpacity onPress={doItHandler} style={styles.button}>
                 <View style={styles.buttonInner}>
@@ -94,6 +103,8 @@ const styles = StyleSheet.create({
         marginTop: 5,
         fontSize: 16,
         alignItems: 'center',
+        textAlign: 'center',
+        justifyContent: 'center',
     },
     profileButton: {
         position: 'absolute', // Position the button absolutely
