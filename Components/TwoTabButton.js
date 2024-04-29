@@ -11,7 +11,7 @@ const TwoTabButton = ({ text1, text2, onPress }) => {
         style={[styles.tab, activeTab === 1 ? styles.activeTab : null]}
         onPress={() => {
           setActiveTab(1);
-          onPress('week'); // Pass 'week' when text1 is pressed
+          onPress('Week'); // Pass 'week' when text1 is pressed
         }}
       >
         <Text style={styles.tabText}>{text1}</Text>
@@ -20,7 +20,7 @@ const TwoTabButton = ({ text1, text2, onPress }) => {
         style={[styles.tab, activeTab === 2 ? styles.activeTab : null]}
         onPress={() => {
           setActiveTab(2);
-          onPress('month'); // Pass 'month' when text2 is pressed
+          onPress('Month'); // Pass 'month' when text2 is pressed
         }}
       >
         <Text style={styles.tabText}>{text2}</Text>
