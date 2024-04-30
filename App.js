@@ -5,6 +5,7 @@ import LoginPage from './Screens/LoginPage';
 import HomePage from './Screens/Home';
 import MoodScreen from './Screens/MoodScreen';
 import DataScreen from './Screens/DataScreen';
+import Visualizations from './Screens/VisualizationScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,6 +17,7 @@ export default function App() {
         <Stack.Screen name="Home" component={HomePage} />
         <Stack.Screen name="Mood" component={MoodScreen} />
         <Stack.Screen name="Data" component={DataScreen} />
+        <Stack.Screen name="Visualizations" component={Visualizations} />
       </Stack.Navigator>
     </NavigationContainer>
   )
