@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, SafeAreaView } from 'react-native';
+import { StyleSheet, View, SafeAreaView, Modal , Text, TouchableHighlight, Dimensions} from 'react-native';
 import TwoTabButton from '../Components/TwoTabButton';
-import { BarChart } from 'react-native-chart-kit';
+// import { BarChart } from 'react-native-chart-kit';
+import { BarChart } from 'react-native-chart-kit-with-pressable-bar-graph';
 import { colors } from "./Utils/Colors";
 
 export default function DataScreen({navigation}) {
   const [activeTab, setActiveTab] = useState('Week'); // Week or Month
+  const [selectedBar, setSelectedBar] = useState(null);
 
   const weekData = [
     { date: 'M', duration: '5:06:26' },
@@ -55,17 +57,25 @@ export default function DataScreen({navigation}) {
 
   const formatChartData = (data) => {
     return data.map(item => {
-      // Parse the duration strings and convert them to total seconds
       const [hours, minutes, seconds] = item.duration.split(':').map(Number);
       const totalSeconds = hours * 3600 + minutes * 60 + seconds;
-      // return totalSeconds;
-
-          // Convert total seconds to total hours
       const totalHours = totalSeconds / 3600;
-
       return totalHours;
     });
   };
+
+  const CustomMarker = ({ value }) => (
+    <View style={styles.marker}>
+      <Text style={styles.markerText}>{value}</Text>
+    </View>
+  );
+
+  const handleBarPress = (data, index) => {
+    const [hours, minutes, seconds] = data.duration.split(':').map(Number);
+    const formattedDuration = `${hours}:${minutes.toString().padStart(2, '0')} h`;
+    setSelectedBar({ ...data, duration: formattedDuration });
+   };
+   
 
   let graphData = activeTab === 'Week' ? weekData : monthData;
 
@@ -86,6 +96,9 @@ export default function DataScreen({navigation}) {
               labels: weekData.map(item => item.date),
               datasets: [{ data: formatChartData(graphData) }]
             }}
+            withDots={false}
+            withScrollableDot={false}
+            // width={Dimensions.get('window').width - 40}
             width={350}
             height={220}
             // yAxisLabel="h"
@@ -104,14 +117,38 @@ export default function DataScreen({navigation}) {
               },
               formatYLabel: value => `${value} h`,
               fromZero: true, // Ensure the chart starts from zero
-              // yLabelsOffset: -10 // Adjust the position of the y-axis labels
+              yLabelsOffset: -10, // Adjust the position of the y-axis labels
+              yAxisInterval: 1, // Set the interval of the y-axis labels
             }}
             style={styles.chart}
+            onDataPointClick={({ datasetIndex, index }) => handleBarPress(weekData[index], index)}
           />
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={selectedBar !== null}
+            onRequestClose={() => {
+                setSelectedBar(null); // Close the modal and reset the selected bar
+            }}
+            >
+            <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                  <Text style={styles.modalText}>Usage time: {selectedBar ? selectedBar.duration : ''}</Text>
+                  <TouchableHighlight
+                    style={{ ...styles.openButton, backgroundColor: colors.DARK_PURPLE }}
+                    onPress={() => {
+                      setSelectedBar(null); // Close the modal and reset the selected bar
+                    }}
+                  >
+                    <Text style={styles.textStyle}>Close</Text>
+                  </TouchableHighlight>
+                </View>
+            </View>
+          </Modal>
           {/* Add horizontal line at weekMean */}
           <View style={[styles.horizontalLine, {
-            top: `${parseFloat(weekMean.split(':')[0]) * 22}px`}
-            ]}/>
+          top: parseFloat(weekMean.split(':')[0]) * 22
+          }]}/>
         </View>
     </SafeAreaView>
   );
@@ -143,6 +180,47 @@ const styles = StyleSheet.create({
     right: 0,
     height: 2,
     backgroundColor: 'red',
-    marginTop: 125,
   },
+
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+ },
+
+ modalView: {
+    margin: 20,
+    backgroundColor: colors.WHITE,
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+ },
+
+ openButton: {
+    color: colors.DARK_PURPLE,
+    borderRadius: 20,
+    padding: 10,
+    elevation: 2,
+    backgroundColor: colors.DARK_PURPLE,
+ },
+
+ textStyle: {
+    color: colors.WHITE,
+    fontWeight: "bold",
+    textAlign: "center",
+ },
+ 
+ modalText: {
+    marginBottom: 15,
+    textAlign: "center",
+ },
 });
