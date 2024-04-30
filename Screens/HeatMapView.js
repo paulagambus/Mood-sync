@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { Calendar } from 'react-native-calendars';
+import { colors } from "./Utils/Colors";
+import { useNavigation } from '@react-navigation/native';
 
 const HeatMapView = () => {
     const [selectedDay, setSelectedDay] = useState(null);
     // const [modalVisible, setModalVisible] = useState(false);
     const [selectedDayDuration, setSelectedDayDuration] = useState('');
+    const [emojiCounts, setEmojiCounts] = useState({});
+    const navigation = useNavigation();
 
     const monthData = [
         { date: '01', duration: '5:50:42', emoji: require('../assets/moods/very_sad.png') },
@@ -41,6 +45,27 @@ const HeatMapView = () => {
         { date: '31', duration: '6:03:28', emoji: require('../assets/moods/confused.png'),}
     ];
 
+    useEffect(() => {
+        // Count the occurrences of each emoji in the monthData array
+        const counts = monthData.reduce((acc, { emoji }) => {
+            acc[emoji] = (acc[emoji] || 0) + 1;
+            return acc;
+        }, {});
+        console.log(counts);
+        setEmojiCounts(counts);
+    }, []);
+
+    const orderedEmojis = [
+        require('../assets/moods/very_sad.png'),
+        require('../assets/moods/confused.png'),
+        require('../assets/moods/bit_sad.png'),
+        require('../assets/moods/neutral.png'),
+        require('../assets/moods/ok-happy.png'),
+        require('../assets/moods/happy.png'),
+        require('../assets/moods/very_happy.png'),
+        
+    ];
+
     const handleDayPress = (day) => {
         const selectedDate = day.dateString;
         setSelectedDay(selectedDate);
@@ -67,49 +92,99 @@ const HeatMapView = () => {
         }
     };
 
+    const handleUpdateMood = () => {
+        navigation.navigate('Mood');
+      };
+
     // Map activity levels to colors
     const activityColors = {
-        1: '#c8e6c9', // Soft green for low activity level
-        2: '#fff9c4', // Soft yellow for medium activity level
-        3: '#ffcdd2', // Soft red for high activity level
+        1: 'lightgreen', // Soft green for low activity level
+        2: 'orange', // Soft yellow for medium activity level
+        3: 'red', // Soft red for high activity level
     };
     
     // Generate marked dates object
     const markedDates = monthData.reduce((acc, { date, duration }) => {
         const activityLevel = getActivityLevel(duration);
         const color = activityColors[activityLevel];
-        acc[`2024-04-${date}`] = { customStyles: { container: { backgroundColor: color } } };
+        acc[`2024-04-${date}`] = {
+            customStyles: {
+                text: {
+                    fontWeight: 'bold',
+                    textDecorationLine: 'underline', // Add underline
+                    textDecorationColor: color, // Color of the underline
+                    color: '#555', // Dark gray color
+                }
+            }
+        };
         return acc;
     }, {});
+    
+    
 
+    
     return (
-        <View style={{ flex: 1 }}>
-    <Calendar
-        markingType={'custom'}
-        markedDates={{
-            ...markedDates,
-            [selectedDay]: { selected: true },
-        }}
-        onDayPress={handleDayPress}
-    />
-    {selectedDay && (
-    <View style={{ backgroundColor: '#fff', padding: 10 }}>
-        <Text style={{ fontSize: 18, fontWeight: 'bold', alignItems: 'center', }}>Day: {selectedDay.split('-')[2]}-{selectedDay.split('-')[1]}</Text>
-        <Text style={{ fontSize: 16 }}>Total usage time: {selectedDayDuration}</Text>
-        <View style={{ flexDirection: 'row', alignItems: 'center', marginTop: 10 }}>
-            <Image source={monthData.find((data) => data.date === selectedDay.split('-')[2])?.emoji} style={{ width: 50, height: 50 }} />
-            <Text style={{ fontSize: 16, marginLeft: 10 }}>
-                {monthData.find((data) => data.date === selectedDay)?.description}
-            </Text>
-        </View>
-        <TouchableOpacity onPress={() => setSelectedDay(null)} style={{ alignSelf: 'flex-end', marginTop: 10 }}>
-            <Text style={{ color: 'blue', fontSize: 16 }}>Close</Text>
-        </TouchableOpacity>
-    </View>
-)}
+        <ScrollView style={{ flex: 1, backgroundColor: colors.WHITE}}>
+            <View style={{ flex: 1 }}>
+                <Calendar
+                    markingType={'custom'}
+                    markedDates={{
+                        ...markedDates,
+                        [selectedDay]: { selected: true },
+                    }}
+                    onDayPress={handleDayPress}
+                    style={{ borderWidth: 0.5, borderColor: colors.WHITE, backgroundColor: colors.WHITE}}
+                    firstDay={1} // Set Monday as the first day of the week
+                    theme={{
+                        arrowColor: colors.DARK_PURPLE,
+                        textSectionTitleColor: colors.DARK_PURPLE,
+                        selectedDayBackgroundColor: colors.DARK_PURPLE,
+                        monthTextFontWeight: 'bold', 
+                        textDayFontSize: 15,
+                        textDayFontWeight: "light",
+                        monthTextColor: colors.DARK_PURPLE,
+                        backgroundColor: colors.WHITE,
+                        calendarBackground: colors.WHITE,
+                        todayTextColor: colors.DARK_PURPLE, // Color of today's date
+                    }}
+                />
+                {selectedDay && (
+                <View style={{ backgroundColor: '#f2f2f2', padding: 10, borderRadius: 10, marginLeft: 5, marginRight: 5}}>
+                    <Text style={{ fontSize: 18, color: colors.DARK_PURPLE }}>Screen time: </Text>
+                    <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 }}>
+                    <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+                        {/* Display time */}
+                        <Text style={{ fontWeight: 'bold', color: colors.DARK_PURPLE, fontSize: 30, marginRight:20 }}>{selectedDayDuration}</Text>
+                        {/* Display emoji */}
+                        <Image source={monthData.find((data) => data.date === selectedDay.split('-')[2])?.emoji} style={{ width: 50, height: 50 }} />
+                    </View>
+                    {/* Buttons */}
+                    <View style={{ flexDirection: 'row' }}>
+                        <TouchableOpacity onPress={() => handleUpdateMood()} style={{ borderRadius: 8, backgroundColor: colors.DARK_PURPLE, padding: 10, marginRight: 5 }}>
+                        <Text style={{ color: colors.WHITE, fontSize: 16 }}>Update Mood</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => setSelectedDay(null)} style={{ borderRadius: 8, backgroundColor: colors.DARK_PURPLE, padding: 10 }}>
+                        <Text style={{ color: colors.WHITE, fontSize: 16 }}>Close</Text>
+                        </TouchableOpacity>
+                    </View>
+                    </View>
+                </View>
+                )}
 
-</View>
-
+                <View style={{ marginTop: 10, padding: 10, backgroundColor: '#f2f2f2', borderRadius: 10, marginLeft: 5, marginRight: 5 }}>
+                <Text style={{ fontSize: 18, fontWeight: 'bold', textAlign: 'center', marginBottom: 10, color: colors.DARK_PURPLE}}>Month Mood Overview</Text>
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
+                    {orderedEmojis.map((emoji) => (
+                        <View key={emoji} style={{ alignItems: 'center', marginBottom: 10 }}>
+                            <Image source={emoji} style={{ width: 50, height: 50 }} />
+                            <View style={{ backgroundColor: colors.LIGHT_PURPLE, width: 30, height: emojiCounts[emoji] ? emojiCounts[emoji] * 10 : 0, marginTop: 5 }} />
+                            <Text style={{fontWeight: "bold", color: colors.DARK_PURPLE}}>{emojiCounts[emoji]}</Text>
+                        </View>
+                    ))}
+                </View>
+                </View>
+            </View>
+        </ScrollView>
     );
 };
 
