@@ -55,6 +55,18 @@ export default function DataScreen({navigation}) {
     { date: '31', duration: '6:03:28' }
   ];
 
+  const calculateTotalDuration = (data) => {
+    let totalSeconds = 0;
+    data.forEach(item => {
+       const [hours, minutes, seconds] = item.duration.split(':').map(Number);
+       totalSeconds += hours * 3600 + minutes * 60 + seconds;
+    });
+   
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    return `${hours}h ${minutes}min`;
+   };   
+
   const formatChartData = (data) => {
     return data.map(item => {
       const [hours, minutes, seconds] = item.duration.split(':').map(Number);
@@ -160,6 +172,11 @@ export default function DataScreen({navigation}) {
           top: parseFloat(weekMean.split(':')[0]) * 22
           }]}/>
         </View>
+        <View style={styles.totalDurationContainer}>
+          <Text style={styles.totalDurationTitle}>Total Screen Time:</Text>
+          <Text style={styles.totalDurationValue}>{calculateTotalDuration(graphData)}</Text>
+        </View>
+
     </SafeAreaView>
   );
 }
@@ -235,9 +252,9 @@ const styles = StyleSheet.create({
  },
 
  averageContainer: {
-  alignItems: 'center',
-  marginBottom: 5, // Adjust the space between the text container and the chart
-  marginTop: 30, // Adjust the space between the tabs and the text container
+  alignItems: 'flex-start', // Align items to the start of the cross-axis
+  marginBottom: 5,
+  marginTop: 30,
  },
 
  textRow: {
@@ -275,4 +292,27 @@ const styles = StyleSheet.create({
   alignSelf: 'flex-end', // Aligns the percentage text to the right
   marginLeft: 15, // Space between the value and the percentage text
  }, 
+
+ totalDurationContainer: {
+  flexDirection: 'row',
+  alignItems: 'flex-start',
+  justifyContent: 'space-between',
+  width: '100%',
+  paddingHorizontal: 33,
+  marginTop: 20,
+ },
+
+ totalDurationTitle: {
+  fontSize: 18,
+  fontWeight: 'bold',
+  color: colors.DARK_PURPLE,
+  alignSelf: 'flex-start',
+ },
+
+ totalDurationValue: {
+  fontSize: 18,
+  color: colors.DARK_PURPLE,
+  alignSelf: 'flex-end',
+ },
+ 
 });
