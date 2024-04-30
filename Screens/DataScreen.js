@@ -186,21 +186,23 @@ export default function DataScreen({navigation}) {
           {/* New row with three columns */}
           <View style={styles.row}>
               <View style={styles.column}>
-                <Text style={[styles.columnText, {fontWeight: 'bold'}]}>Social</Text>
-                <Text style={styles.columnText}>{socialDuration}</Text>
+                <Text style={[styles.columnText, {fontWeight: 'bold', alignSelf: 'flex-start'}]}>Social</Text>
+                <Text style={[styles.columnText, {alignSelf: 'flex-start'}]}>{socialDuration}</Text>
               </View>
               <View style={styles.column}>
                 <Text style={[styles.columnText, {fontWeight: 'bold'}]}>Productivity</Text>
                 <Text style={styles.columnText}>{productivityDuration}</Text>
               </View>
               <View style={styles.column}>
-                <Text style={[styles.columnText, {fontWeight: 'bold'}]}>Creativity</Text>
-                <Text style={styles.columnText}>{creativityDuration}</Text>
+                <Text style={[styles.columnText, {fontWeight: 'bold', alignSelf: 'flex-end'}]}>Creativity</Text>
+                <Text style={[styles.columnText, {alignSelf: 'flex-end'}]}>{creativityDuration}</Text>
               </View>
           </View>
+          {/* Line between the rows */}
+          <View style={[styles.lineStyle, {top: 60}]} />
           {/* Existing row */}
           <View style={styles.row}>
-            <Text style={[styles.totalDurationTitle, { marginRight: 90 }]}>Total Screen Time:</Text>
+            <Text style={[styles.totalDurationTitle, { marginRight: 90, marginTop: 10 }]}>Total Screen Time:</Text>
             <Text style={styles.totalDurationValue}>{calculateTotalDuration(graphData)}</Text>
           </View>
         </View>
@@ -220,9 +222,9 @@ const styles = StyleSheet.create({
   chartContainer: {
     marginTop: 0,
     alignItems: 'absolute',
-    marginHorizontal: 0,
     borderBottomLeftRadius: 16,
     borderBottomRightRadius: 16,
+    marginBottom: 1,
   },
 
   chart: {
@@ -269,7 +271,7 @@ const styles = StyleSheet.create({
  openButton: {
     color: colors.DARK_PURPLE,
     borderRadius: 20,
-    padding: 8,
+    padding: 5,
     elevation: 2,
     backgroundColor: colors.DARK_PURPLE,
  },
@@ -339,7 +341,7 @@ const styles = StyleSheet.create({
   justifyContent: 'space-between',
   width: '98%',
   paddingHorizontal: 20,
-  marginTop: 1,
+  marginTop: 0,
   backgroundColor: colors.WHITE,
   paddingVertical: 10,
   borderBottomLeftRadius: 16,
@@ -376,6 +378,15 @@ column: {
 columnText: {
   fontSize: 16, // Adjust as needed
   color: colors.DARK_PURPLE,
+},
+
+lineStyle: {
+  position: 'absolute',
+  left: 20,
+  right: 0,
+  height: 0.5,
+  backgroundColor: colors.DARK_PURPLE,
+  marginRight: 20,
 },
  
 });
