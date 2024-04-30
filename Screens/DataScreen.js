@@ -21,6 +21,11 @@ export default function DataScreen({navigation}) {
 
   const weekMean = '6:00:51'; // Average duration for the week
 
+  const socialDuration = "2h 30min";
+  const productivityDuration = "3h 45min";
+  const creativityDuration = "1h 15min";  
+
+
   const monthData = [
     { date: '01', duration: '5:50:42' },
     { date: '02', duration: '7:47:48' },
@@ -121,17 +126,19 @@ export default function DataScreen({navigation}) {
             withDots={false}
             withScrollableDot={false}
             // width={Dimensions.get('window').width - 40}
-            width={350}
+            width={380}
             height={220}
             // yAxisLabel="h"
             chartConfig={{
-              backgroundColor: colors.LIGHT_PURPLE,
-              backgroundGradientFrom: colors.LIGHT_PURPLE,
-              backgroundGradientTo: colors.LIGHT_PURPLE,
+              backgroundColor: colors.WHITE,
+              backgroundGradientFrom: colors.WHITE,
+              backgroundGradientTo: colors.WHITE,
+              paddingHorizontal: 0, // Space on the sides of the chart
+              barPercentage: 0.8, // Adjust the width of the bars
               decimalPlaces: 1,
               color: (opacity = 1) => `rgba(81, 48, 148, ${opacity})`, // dark purple color
               labelColor: (opacity = 1) => `rgba(81, 48, 148, ${opacity})`, // dark purple color
-              style: { borderRadius: 16 },
+              style: { borderRadius: 16, },
               propsForDots: {
                 r: "6",
                 strokeWidth: "2",
@@ -141,6 +148,8 @@ export default function DataScreen({navigation}) {
               fromZero: true, // Ensure the chart starts from zero
               yLabelsOffset: -10, // Adjust the position of the y-axis labels
               yAxisInterval: 1, // Set the interval of the y-axis labels
+              justifyContent: 'center',
+              width: 350,
             }}
             style={styles.chart}
             onDataPointClick={({ datasetIndex, index }) => handleBarPress(weekData[index], index)}
@@ -169,12 +178,31 @@ export default function DataScreen({navigation}) {
           </Modal>
           {/* Add horizontal line at weekMean */}
           <View style={[styles.horizontalLine, {
-          top: parseFloat(weekMean.split(':')[0]) * 22
+          // top: parseFloat(weekMean.split(':')[0]) * 22
+          top: 113
           }]}/>
         </View>
         <View style={styles.totalDurationContainer}>
-          <Text style={styles.totalDurationTitle}>Total Screen Time:</Text>
-          <Text style={styles.totalDurationValue}>{calculateTotalDuration(graphData)}</Text>
+          {/* New row with three columns */}
+          <View style={styles.row}>
+              <View style={styles.column}>
+                <Text style={[styles.columnText, {fontWeight: 'bold'}]}>Social</Text>
+                <Text style={styles.columnText}>{socialDuration}</Text>
+              </View>
+              <View style={styles.column}>
+                <Text style={[styles.columnText, {fontWeight: 'bold'}]}>Productivity</Text>
+                <Text style={styles.columnText}>{productivityDuration}</Text>
+              </View>
+              <View style={styles.column}>
+                <Text style={[styles.columnText, {fontWeight: 'bold'}]}>Creativity</Text>
+                <Text style={styles.columnText}>{creativityDuration}</Text>
+              </View>
+          </View>
+          {/* Existing row */}
+          <View style={styles.row}>
+            <Text style={[styles.totalDurationTitle, { marginRight: 90 }]}>Total Screen Time:</Text>
+            <Text style={styles.totalDurationValue}>{calculateTotalDuration(graphData)}</Text>
+          </View>
         </View>
 
     </SafeAreaView>
@@ -191,14 +219,19 @@ const styles = StyleSheet.create({
 
   chartContainer: {
     marginTop: 0,
-    alignItems: 'center',
-    marginHorizontal: 5,
+    alignItems: 'absolute',
+    marginHorizontal: 0,
+    borderBottomLeftRadius: 16,
+    borderBottomRightRadius: 16,
   },
 
   chart: {
-    marginVertical: 10,
-    borderRadius: 16,
+    // marginVertical: 5,
+    marginHorizontal: 10,
+    borderBottomLeftRadius: 16,
+    borderBottomRightRadius: 16,
     alignItems: 'center',
+    marginBottom: 10,
   },
 
   horizontalLine: {
@@ -207,6 +240,7 @@ const styles = StyleSheet.create({
     right: 0,
     height: 2,
     backgroundColor: 'red',
+    marginHorizontal: 15,
   },
 
   centeredView: {
@@ -220,7 +254,7 @@ const styles = StyleSheet.create({
     margin: 20,
     backgroundColor: colors.WHITE,
     borderRadius: 20,
-    padding: 35,
+    padding: 20,
     alignItems: "center",
     shadowColor: "#000",
     shadowOffset: {
@@ -235,7 +269,7 @@ const styles = StyleSheet.create({
  openButton: {
     color: colors.DARK_PURPLE,
     borderRadius: 20,
-    padding: 10,
+    padding: 8,
     elevation: 2,
     backgroundColor: colors.DARK_PURPLE,
  },
@@ -244,6 +278,7 @@ const styles = StyleSheet.create({
     color: colors.WHITE,
     fontWeight: "bold",
     textAlign: "center",
+    fontSize: 10,
  },
  
  modalText: {
@@ -253,8 +288,13 @@ const styles = StyleSheet.create({
 
  averageContainer: {
   alignItems: 'flex-start', // Align items to the start of the cross-axis
-  marginBottom: 5,
+  // marginBottom: 1,
   marginTop: 30,
+  backgroundColor: colors.WHITE,
+  paddingHorizontal: 33,
+  paddingVertical: 10,
+  borderTopRightRadius: 16,
+  borderTopLeftRadius: 16,
  },
 
  textRow: {
@@ -294,12 +334,17 @@ const styles = StyleSheet.create({
  }, 
 
  totalDurationContainer: {
-  flexDirection: 'row',
-  alignItems: 'flex-start',
+  flexDirection: 'column',
+  alignItems: 'absolute',
   justifyContent: 'space-between',
-  width: '100%',
-  paddingHorizontal: 33,
-  marginTop: 20,
+  width: '98%',
+  paddingHorizontal: 20,
+  marginTop: 1,
+  backgroundColor: colors.WHITE,
+  paddingVertical: 10,
+  borderBottomLeftRadius: 16,
+  borderBottomRightRadius: 16,
+  marginHorizontal: 20,
  },
 
  totalDurationTitle: {
@@ -314,5 +359,23 @@ const styles = StyleSheet.create({
   color: colors.DARK_PURPLE,
   alignSelf: 'flex-end',
  },
+
+ row: {
+  flexDirection: 'row',
+  justifyContent: 'space-between',
+  marginBottom: 10, // Adjust as needed
+  alignContent: 'center',
+},
+
+column: {
+  flex: 1,
+  alignItems: 'center',
+  justifyContent: 'center',
+},
+
+columnText: {
+  fontSize: 16, // Adjust as needed
+  color: colors.DARK_PURPLE,
+},
  
 });
