@@ -64,12 +64,13 @@ export default function DataScreen({navigation}) {
     });
   };
 
-  const CustomMarker = ({ value }) => (
-    <View style={styles.marker}>
-      <Text style={styles.markerText}>{value}</Text>
-    </View>
-  );
-
+  const formatAverageDuration = (duration) => {
+    const [hours, minutes, seconds] = duration.split(':').map(Number);
+    const formattedHours = hours.toString().padStart(2, '0');
+    const formattedMinutes = minutes.toString().padStart(2, '0');
+    return `${formattedHours} h ${formattedMinutes}min`;
+   };
+   
   const handleBarPress = (data, index) => {
     const [hours, minutes, seconds] = data.duration.split(':').map(Number);
     const formattedDuration = `${hours}:${minutes.toString().padStart(2, '0')} h`;
@@ -90,6 +91,15 @@ export default function DataScreen({navigation}) {
         text2="Month"
         onPress={(tab) => setActiveTab(tab)}
       />
+        <View style={styles.averageContainer}>
+          <View style={styles.textRow}>
+            <Text style={styles.averageTitle}>Last Week's Average</Text>
+          </View>
+          <View style={styles.textRow}>
+            <Text style={styles.averageValue}>{formatAverageDuration(weekMean)}</Text>
+            <Text style={styles.percentageText}>11% more than last week</Text>
+          </View>
+        </View>
         <View style={styles.chartContainer}>
           <BarChart
             data={{
@@ -163,13 +173,13 @@ const styles = StyleSheet.create({
   },
 
   chartContainer: {
-    marginTop: 20,
+    marginTop: 0,
     alignItems: 'center',
     marginHorizontal: 5,
   },
 
   chart: {
-    marginVertical: 20,
+    marginVertical: 10,
     borderRadius: 16,
     alignItems: 'center',
   },
@@ -223,4 +233,46 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     textAlign: "center",
  },
+
+ averageContainer: {
+  alignItems: 'center',
+  marginBottom: 5, // Adjust the space between the text container and the chart
+  marginTop: 30, // Adjust the space between the tabs and the text container
+ },
+
+ textRow: {
+  flexDirection: 'row',
+  alignItems: 'center',
+  justifyContent: 'space-between', // Ensures space between the title/value and the percentage text
+  alignSelf: 'flex-start', // Aligns the text to the center
+ },
+
+ averageTitle: {
+  fontSize: 18, // Adjust the font size as needed
+  marginBottom: 5, // Space between the title and the value
+  color: colors.DARK_PURPLE,
+  // marginHorizontal: -100, // Space on the sides of the text
+  alignSelf: 'flex-start', // Aligns the text to the left
+ },
+
+ averageValue: {
+  fontSize: 22, // Larger font size for the value
+  fontWeight: 'bold',
+  marginRight: 20, // Space between the value and the percentage text
+  color: colors.DARK_PURPLE,
+  alignSelf: 'flex-start', // Aligns the value to the right
+ },
+
+ percentageContainer: {
+  alignSelf: 'flex-end', // Aligns the percentage text to the right
+  marginRight: 10, // Space between the value and the percentage text
+ },
+
+ percentageText: {
+  fontSize: 14, // Same font size as the value
+  // fontWeight: 'bold',
+  color: colors.DARK_PURPLE,
+  alignSelf: 'flex-end', // Aligns the percentage text to the right
+  marginLeft: 15, // Space between the value and the percentage text
+ }, 
 });
