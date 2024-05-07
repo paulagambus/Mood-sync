@@ -3,8 +3,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginPage from './Screens/LoginPage'; 
 import HomePage from './Screens/Home';
-import MoodScreen from './Screens/MoodScreen';
+import MoodScreen from './Screens/MoodScreen_v2';
 import Visualizations from './Screens/VisualizationScreen';
+// import WeekScreen from './Screens/WeekScreen';
 
 const Stack = createNativeStackNavigator();
 

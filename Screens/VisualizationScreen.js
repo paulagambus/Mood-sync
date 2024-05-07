@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { colors } from "./Utils/Colors";
 import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
-import WeekScreen from './WeekScreen';
+import DataScreen from './DataScreen';
 import HeatMapView from './HeatMapView';
 
 const VisualizationScreen = () => {
@@ -13,7 +13,7 @@ const VisualizationScreen = () => {
   ]);
 
   const renderScene = SceneMap({
-    week: WeekScreen,
+    week: DataScreen,
     month: HeatMapView,
   });
 
