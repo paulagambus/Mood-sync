@@ -1,5 +1,5 @@
 export const colors = {
-    LIGHT_PURPLE: '#E0D6F3',
-    DARK_PURPLE: '#513094',
+    LIGHT_PURPLE: '#115BD8',
+    DARK_PURPLE: '#FCF1DF',
     WHITE: 'white',
 };
