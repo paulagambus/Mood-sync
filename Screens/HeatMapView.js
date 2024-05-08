@@ -177,7 +177,7 @@ const HeatMapView = () => {
                     {orderedEmojis.map((emoji) => (
                         <View key={emoji} style={{ alignItems: 'center', marginBottom: 10 }}>
                             <Image source={emoji} style={{ width: 50, height: 50 }} />
-                            <View style={{ backgroundColor: colors.LIGHT_PURPLE, width: 30, height: emojiCounts[emoji] ? emojiCounts[emoji] * 10 : 0, marginTop: 5 }} />
+                            <View style={{ backgroundColor: colors.DARK_PURPLE, width: 30, height: emojiCounts[emoji] ? emojiCounts[emoji] * 10 : 0, marginTop: 5 }} />
                             <Text style={{fontWeight: "bold", color: colors.DARK_PURPLE}}>{emojiCounts[emoji]}</Text>
                         </View>
                     ))}

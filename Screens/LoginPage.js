@@ -40,14 +40,14 @@ export default function LoginPage ({navigation}) {
     },
   
     logo: {
-      width: '50%',
-      height: '50%',
+      width: '30%',
+      height: '30%',
       position: 'absolute',
-      marginTop: '20%',
+      marginTop: '30%',
       marginLeft: '25%',
-      marginRight: '25%'
+      marginRight: '25%',
       // top: 60, // Adjust this value to position the logo vertically
-      // alignSelf: 'center', // Align the logo horizontally to the center
+      alignSelf: 'center', // Align the logo horizontally to the center
     },
   
     button: {

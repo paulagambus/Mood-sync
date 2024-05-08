@@ -69,10 +69,10 @@ const styles = StyleSheet.create({
         height: Dimensions.get('window').height,
     },
     logo: {
-        width: 100, // Adjust width as needed
+        width: 80, // Adjust width as needed
         height: 100, // Adjust height as needed
         position: 'absolute',
-        top: 20, // Adjust top position as needed
+        top: 5, // Adjust top position as needed
         left: 20, // Adjust left position as needed
     },
     greetingText: {
