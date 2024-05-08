@@ -49,7 +49,7 @@ export default function HomePage({navigation}) {
                     <Text style={styles.buttonText}>Let's do it</Text>
                 </View>
             </TouchableOpacity>
-            <Text style={styles.greetingText}>How was the week?</Text>
+            <Text style={styles.greetingText}>Review data</Text>
             <TouchableOpacity onPress={checkItHandler} style={styles.button}>
                 <View style={styles.buttonInner}>
                     <Text style={styles.buttonText}>Let's check it</Text>
@@ -82,7 +82,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     button: {
-        width: "50%",
+        width: "55%",
         borderRadius: 25,
         marginBottom: 30,
         alignItems: 'center',
