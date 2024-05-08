@@ -138,8 +138,8 @@ export default function DataScreen({navigation}) {
               paddingHorizontal: 0, // Space on the sides of the chart
               barPercentage: 0.8, // Adjust the width of the bars
               decimalPlaces: 1,
-              color: (opacity = 1) => `rgba(81, 48, 148, ${opacity})`, // dark purple color
-              labelColor: (opacity = 1) => `rgba(81, 48, 148, ${opacity})`, // dark purple color
+              color: (opacity = 1) => `rgba(17, 91, 216,  ${opacity})`, // dark purple color
+              labelColor: (opacity = 1) => `rgba(17, 91, 216,  ${opacity})`, // dark purple color
               style: { borderRadius: 16, },
               propsForDots: {
                 r: "6",
@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: colors.LIGHT_PURPLE,
     alignItems: 'center',
-    justifyContent: 'center',
+    // justifyContent: 'center',
   },
 
   chartContainer: {

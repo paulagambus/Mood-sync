@@ -91,9 +91,9 @@ const WeekScreen = () => {
               backgroundGradientTo: colors.WHITE,
               paddingHorizontal: 0, // Space on the sides of the chart
               barPercentage: 0.8, // Adjust the width of the bars
-              decimalPlaces: 1,
-              color: (opacity = 1) => `rgba(17, 91, 216, ${opacity})`, // dark purple color
-              labelColor: (opacity = 1) => `rgba(17, 91, 216, ${opacity})`, // dark purple color
+              // decimalPlaces: 1,
+              // color: (opacity = 1) => `rgba(17, 91, 216, ${opacity})`, // dark purple color
+              // labelColor: (opacity = 1) => `rgba(17, 91, 216, ${opacity})`, // dark purple color
               style: { borderRadius: 16, },
               propsForDots: {
                 r: "6",
@@ -215,7 +215,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     padding: 20,
     alignItems: "center",
-    shadowColor: "#000",
+    shadowColor: colors.LIGHT_PURPLE,
     shadowOffset: {
       width: 0,
       height: 2,

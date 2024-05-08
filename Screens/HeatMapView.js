@@ -124,7 +124,7 @@ const HeatMapView = () => {
 
     
     return (
-        <ScrollView style={{ flex: 1, backgroundColor: colors.WHITE}}>
+        <ScrollView style={{ flex: 1, backgroundColor: colors.LIGHT_PURPLE}}>
             <View style={{ flex: 1 }}>
                 <Calendar
                     markingType={'custom'}
@@ -133,7 +133,7 @@ const HeatMapView = () => {
                         [selectedDay]: { selected: true },
                     }}
                     onDayPress={handleDayPress}
-                    style={{ borderWidth: 0.5, borderColor: colors.WHITE, backgroundColor: colors.WHITE}}
+                    style={{ borderWidth: 0.5, borderColor: colors.LIGHT_PURPLE, backgroundColor: colors.LIGHT_PURPLE}}
                     firstDay={1} // Set Monday as the first day of the week
                     theme={{
                         arrowColor: colors.DARK_PURPLE,
@@ -143,13 +143,13 @@ const HeatMapView = () => {
                         textDayFontSize: 15,
                         textDayFontWeight: "light",
                         monthTextColor: colors.DARK_PURPLE,
-                        backgroundColor: colors.WHITE,
-                        calendarBackground: colors.WHITE,
+                        backgroundColor: colors.LIGHT_PURPLE,
+                        calendarBackground: colors.LIGHT_PURPLE,
                         todayTextColor: colors.DARK_PURPLE, // Color of today's date
                     }}
                 />
                 {selectedDay && (
-                <View style={{ backgroundColor: '#f2f2f2', padding: 10, borderRadius: 10, marginLeft: 5, marginRight: 5}}>
+                <View style={{ backgroundColor: colors.WHITE, padding: 10, borderRadius: 10, marginLeft: 5, marginRight: 5}}>
                     <Text style={{ fontSize: 18, color: colors.DARK_PURPLE }}>Screen time: </Text>
                     <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginTop: 10 }}>
                     <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -171,7 +171,7 @@ const HeatMapView = () => {
                 </View>
                 )}
 
-                <View style={{ marginTop: 10, padding: 10, backgroundColor: '#f2f2f2', borderRadius: 10, marginLeft: 5, marginRight: 5 }}>
+                <View style={{ marginTop: 10, padding: 10, backgroundColor: colors.WHITE, borderRadius: 10, marginLeft: 5, marginRight: 5 }}>
                 <Text style={{ fontSize: 18, fontWeight: 'bold', textAlign: 'center', marginBottom: 10, color: colors.DARK_PURPLE}}>Month Mood Overview</Text>
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'flex-end' }}>
                     {orderedEmojis.map((emoji) => (
